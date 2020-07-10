@@ -6,7 +6,7 @@
 /*   By: caidel <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 20:01:53 by caidel            #+#    #+#             */
-/*   Updated: 2020/07/10 16:12:04 by caidel           ###   ########.fr       */
+/*   Updated: 2020/07/10 16:18:48 by caidel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,21 @@ int	ft_stoi(char *str)
 
 	/*
 	 * Reste a prendre en compte les whitespaces
-	 * la compo des 10 chiffres
-	 *
-	 * */
+	 */
+	while (/*whitespace*/)
+		i++
 
-	while (str[i])
+	while (str[i] == '-' || str[i] == '+')
 	{
-		res = res*10 + str[i] - '0';
+		if (str[0] == '-')
+		{
+			sign *= -1;
+			i++;
+		}
+
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res*10 + (str[i] - '0');
 		i++;
 	}
 	return (sign*res);
