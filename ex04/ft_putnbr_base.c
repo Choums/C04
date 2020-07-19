@@ -6,57 +6,76 @@
 /*   By: caidel <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:18:12 by caidel            #+#    #+#             */
-/*   Updated: 2020/07/13 12:49:50 by caidel           ###   ########.fr       */
+/*   Updated: 2020/07/19 17:04:39 by caidel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	is_double_true(char *str)
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int		check_args(char *args)
 {
 	int i;
 	int j;
 
-	i = 1;
-	while (str)
+	i = 0;
+	if (args[0] == '\0' || args[1] == '-')
+		return (0);
+	while (args[i])
 	{
-		j = 0;
-		while (str[i] != str[j])
+		j = i + 1;
+		if (args[i] == '+' || args[i] == '-')
+			return (0);
+		if (args[i] < 32 || args[i] > 126)
+			return (0);
+		while (args[j])
 		{
-			if (str[j] == str[i])
-				return (1);
+			if (args[i] == args[j])
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
 {
+	int i;
+	int tbase;
+	int res[50];
 
-}
-
-int check_args(char *str)
-{
-	while (str)
+	i = 0;
+	tbase = 0;
+	if (check_args(base))
 	{
-		if (str <= 1)
-			return (1);
-		if (str == '+' || str == '-')
-			return (1);
-		if (is_double_true)
-			return (1);
+		if (nbr < 0)
+		{
+			nbr *= -1;
+			ft_putchar('-');
+		}
+		tbase = ft_strlen(base);
+		while (nbr)
+		{
+			res[i] = nbr % tbase;
+			nbr /= tbase;
+			i++;
+		}
+		while (--i >= 0)
+			ft_putchar(base[res[i]]);
 	}
-	return (0);
-}
-
-int	main(int argc, char *argv[])
-{
-	if (!(check_args(argv[2])));
-	{
-		printf("Error\n");
-		return (1);
-	}
-	return 0;
 }
